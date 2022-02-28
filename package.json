@@ -1,0 +1,19 @@
+{
+  "name": "askmeapp",
+  "version": "1.0.0",
+  "description": "Node.js and react app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukicbelma/AskMeApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nukicbelma/AskMeApp/issues"
+  },
+  "homepage": "https://github.com/nukicbelma/AskMeApp#readme"
+}
