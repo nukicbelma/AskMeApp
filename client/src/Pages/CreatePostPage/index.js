@@ -7,6 +7,7 @@ import NavbarComponent from '../../Components/Navbar/index.js';
 import Popup from '../Popup';
 import api from '../../api.js';
 
+
 const PostCreator = (props) => {
 	const history = useHistory();
 	const [popup, setPopup] = useState({});
@@ -38,7 +39,7 @@ const PostCreator = (props) => {
 				history.push('/');
 			}
 		} else if (res.status === 401) {
-			setPopup({ message: 'Invalid credentials. Please login again.' });
+			setPopup({ message: 'Invalid username or password. Please login again.' });
 		} else {
 			setPopup({ message: 'Sorry something went wrong.' });
 		}
@@ -57,7 +58,7 @@ const PostCreator = (props) => {
 		if (res.status === 200) {
 			history.push(`/posts/${params.get('originalId')}`);
 		} else if (res.status === 401) {
-			setPopup({ message: 'Invalid credentials. Please login again.' });
+			setPopup({ message: 'Invalid username or password. Please login again.' });
 		} else {
 			setPopup({ message: 'Sorry something went wrong.' });
 		}
@@ -93,28 +94,16 @@ const PostCreator = (props) => {
 						</div>
 					)}
 					<div className='form-group'>
-						<label>Body</label>
+						<label>Question</label>
 						<Form.Control
 							name='body'
 							className='form-control'
 							id='body'
-							placeholder='Enter text'
+							placeholder='Enter your question here'
 						/>
 					</div>
-					{!params.get('parentId') && (
-						<div className='form-group'>
-							<label>Optional: shedule a post</label>
-
-							<Form.Control
-								name='date'
-								className='form-control'
-								id='date'
-								type='datetime-local'
-							/>
-						</div>
-					)}
-					<button type='submit' className='btn btn-primary'>
-						Submit
+					<button type='submit' className='btn btn-primary' style={{float: 'right'}}>
+						Ask!
 					</button>
 				</Form>
 			</div>
