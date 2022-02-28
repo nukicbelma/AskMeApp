@@ -38,11 +38,11 @@ const PostMenu = (props) => {
 			<select
 				className='form-control'
 				name='select'
-				style={{ width: '10%' }}
+				style={{ width: '15%' }}
 				onChange={changeSortOption}
 			>
 				<option>default</option>
-				<option>most-upvotes</option>
+				<option>most-likes</option>
 				<option>recent</option>
 				<option>oldest</option>
 			</select>

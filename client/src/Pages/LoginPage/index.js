@@ -14,16 +14,16 @@ const LoginPage = (props) => {
 		e.preventDefault();
 		const formElement = e.currentTarget;
 		const formData = new FormData(formElement);
-		const username = formData.get('username');
+		const email = formData.get('email');
 		const password = formData.get('password');
 		const res = await api.login({
-			username,
+			email,
 			password
 		});
 		if (res.status === 200) {
 			history.push('/');
 		} else {
-			setPopup({ message: 'Incorrect username or password' });
+			setPopup({ message: 'Incorrect email or password' });
 		}
 	}
 	return (
@@ -35,18 +35,18 @@ const LoginPage = (props) => {
 					marginLeft: '20%',
 					marginRight: '20%',
 					marginTop: '2%',
-					padding: '2em'
+					padding: '2.5em'
 				}}
 				className='card'
 			>
 				<Form id='loginUserForm' onSubmit={handleClick}>
 					<Form.Group>
-						<Form.Label>Username</Form.Label>
+						<Form.Label>Email</Form.Label>
 						<Form.Control
-							name='username'
+							name='email'
 							className='form-control'
-							id='username'
-							placeholder='Enter username'
+							id='email'
+							placeholder='Enter email'
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -59,8 +59,8 @@ const LoginPage = (props) => {
 							placeholder='Enter password'
 						/>
 					</Form.Group>
-					<button type='submit' className='btn btn-primary'>
-						Submit
+					<button type='submit' className='btn btn-primary' style={{float: 'right'}}>
+						Login!
 					</button>
 				</Form>
 			</div>

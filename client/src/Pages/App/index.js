@@ -80,10 +80,11 @@ const App = () => {
 				</div>
 				<div className='col-3 d-flex flex-column align-items-center'>
 					<Link
-						className='btn btn-primary align-self-top mt-3 mb-3 pr-5 pl-5'
+						className='btn btn-primary align-self-top mt-4 mb-3 pr-5 pl-5'
 						to='/create'
+						style={{float: 'right'}}
 					>
-						Create a Post
+						Ask a question
 					</Link>
 					{totalPosts && (
 						<PaginationBar

@@ -12,20 +12,26 @@ const SignupPage = (props) => {
 	const history = useHistory();
 	const [formAttributes, setFormAttributes] = useState({
 		username: '',
-		password: '',
-		formError: 'username is too short, password is too short'
+		email: '',
+		firstname: '',
+		lastname: '',
+		formError: 'email format is not valid, password is too short'
 	});
 
 	async function handleClick(e) {
 		e.preventDefault();
 		const formElement = document.querySelector('form');
 		const formData = new FormData(formElement);
-		const username = formData.get('username');
+		const email = formData.get('email');
 		const password = formData.get('password');
+		const firstname = formData.get('firstname');
+		const lastname = formData.get('lastname');
 
 		const res = await api.signup({
-			username,
-			password
+			email,
+			password, 
+			firstname,
+			lastname
 		});
 
 		if (res.status === 200) {
@@ -39,22 +45,22 @@ const SignupPage = (props) => {
 	function handleUserInput(e) {
 		const formElement = e.currentTarget;
 		const formData = new FormData(formElement);
-		const username = formData.get('username');
+		const email = formData.get('email');
 		const password = formData.get('password');
-		const usernameError = validateUsername(username);
+		const emailError = validateUsername(email);
 		const passwordError = validatePassword(password);
 		const formError = [];
-		if (usernameError !== 'valid') {
-			formError.push(usernameError);
+		if (emailError !== 'valid') {
+			formError.push(emailError);
 		}
 		if (passwordError !== 'valid') {
 			formError.push(passwordError);
 		}
 		if (formError.length === 0) {
-			setFormAttributes({ username, password });
+			setFormAttributes({ email, password });
 		} else {
 			setFormAttributes({
-				username,
+				email,
 				password,
 				formError: formError.join(', ')
 			});
@@ -66,14 +72,14 @@ const SignupPage = (props) => {
 			{formAttributes.formError ? (
 				<Popup message={formAttributes.formError} error />
 			) : (
-				<Popup message='username and password look good!' />
+				<Popup message='email and password look good!' />
 			)}
 			<div
 				style={{
 					marginLeft: '20%',
 					marginRight: '20%',
 					marginTop: '2%',
-					padding: '4em'
+					padding: '2.5em'
 				}}
 				className='card'
 			>
@@ -83,12 +89,12 @@ const SignupPage = (props) => {
 					onChange={handleUserInput}
 				>
 					<Form.Group>
-						<Form.Label>Username</Form.Label>
+						<Form.Label>Email</Form.Label>
 						<Form.Control
-							name='username'
+							name='email'
 							className='form-control'
-							id='username'
-							placeholder='Enter username'
+							id='email'
+							placeholder='Enter email'
 							value={formAttributes.email}
 						/>
 					</Form.Group>
@@ -103,8 +109,30 @@ const SignupPage = (props) => {
 							value={formAttributes.password}
 						/>
 					</Form.Group>
-					<button type='submit' className='btn btn-primary'>
-						Submit
+					<Form.Group className='form-group'>
+						<Form.Label>First name</Form.Label>
+						<Form.Control
+							type='firstname'
+							name='firstname'
+							className='form-control'
+							id='firsname'
+							placeholder='Enter first name'
+							value={formAttributes.firstname}
+						/>
+					</Form.Group>
+					<Form.Group className='form-group'>
+						<Form.Label>Last name</Form.Label>
+						<Form.Control
+							type='lastname'
+							name='lastname'
+							className='form-control'
+							id='lastname'
+							placeholder='Enter last name'
+							value={formAttributes.lastname}
+						/>
+					</Form.Group>
+					<button type='submit' className='btn btn-primary' style={{float: 'right'}}>
+						Sign up!
 					</button>
 				</Form>
 			</div>
